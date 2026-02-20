@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>x.com Zen Mode</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 14px;
+      width: 240px;
+      padding: 16px;
+      background: #fff;
+      color: #0f1419;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      body { background: #15202b; color: #f7f9f9; }
+      .scope-btn { background: #253341; border-color: #38444d; color: #8b98a5; }
+      .scope-btn.active { background: #1d9bf0; border-color: #1d9bf0; color: #fff; }
+    }
+
+    .row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .row + .row { margin-top: 14px; }
+
+    .label {
+      font-size: 13px;
+      color: inherit;
+    }
+
+    /* Toggle pill */
+    .toggle {
+      position: relative;
+      width: 40px;
+      height: 22px;
+      background: #cfd9de;
+      border: none;
+      border-radius: 11px;
+      cursor: pointer;
+      transition: background 0.2s;
+      flex-shrink: 0;
+    }
+
+    .toggle::after {
+      content: '';
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 16px;
+      height: 16px;
+      background: #fff;
+      border-radius: 50%;
+      transition: transform 0.2s;
+    }
+
+    .toggle.on {
+      background: #1d9bf0;
+    }
+
+    .toggle.on::after {
+      transform: translateX(18px);
+    }
+
+    /* Scope segmented control */
+    .scope-group {
+      display: flex;
+      gap: 6px;
+    }
+
+    .scope-btn {
+      flex: 1;
+      padding: 5px 0;
+      font-size: 12px;
+      font-family: inherit;
+      background: #eff3f4;
+      border: 1px solid #cfd9de;
+      border-radius: 6px;
+      color: #536471;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+      text-align: center;
+    }
+
+    .scope-btn.active {
+      background: #1d9bf0;
+      border-color: #1d9bf0;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <div class="row">
+    <span class="label" id="toggle-label">Blocking videos</span>
+    <button class="toggle on" id="toggle" aria-label="Toggle video blocking"></button>
+  </div>
+  <div class="row">
+    <span class="label">Scope</span>
+    <div class="scope-group">
+      <button class="scope-btn active" data-scope="everywhere" id="scope-everywhere">Everywhere</button>
+      <button class="scope-btn" data-scope="home" id="scope-home">Home only</button>
+    </div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>

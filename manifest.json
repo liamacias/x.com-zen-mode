@@ -1,0 +1,39 @@
+{
+  "manifest_version": 3,
+  "name": "x.com Zen Mode",
+  "version": "1.0.0",
+  "description": "Hide videos on X for intentional browsing.",
+  "permissions": ["storage", "tabs"],
+  "host_permissions": ["*://*.x.com/*", "*://*.twitter.com/*"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icon-active-16.png",
+      "32": "icon-active-32.png"
+    }
+  },
+  "icons": {
+    "16": "icon-active-16.png",
+    "48": "icon-active-48.png",
+    "128": "icon-active-128.png"
+  },
+  "commands": {
+    "toggle-blocking": {
+      "suggested_key": {
+        "default": "Alt+V",
+        "mac": "Option+V"
+      },
+      "description": "Toggle video blocking"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.x.com/*", "*://*.twitter.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_start"
+    }
+  ]
+}

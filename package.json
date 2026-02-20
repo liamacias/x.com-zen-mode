@@ -1,0 +1,15 @@
+{
+  "name": "x-com-zen-mode",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "icons": "node scripts/generate-icons.js",
+    "package": "zip -r extension.zip manifest.json background.js content.js popup.html popup.js icon-*.png",
+    "upload": "chrome-webstore-upload upload --source extension.zip",
+    "publish": "npm run package && npm run upload"
+  },
+  "devDependencies": {
+    "chrome-webstore-upload-cli": "^3.0.0",
+    "jimp": "^1.6.0"
+  }
+}
