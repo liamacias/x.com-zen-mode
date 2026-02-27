@@ -28,7 +28,7 @@ Icons must be generated (`npm run icons`) before loading for the first time.
 
 **Extension files** (loaded by Chrome directly):
 
-- **`manifest.json`** — Manifest V3. Permissions: `storage`, `tabs`. Host permissions: x.com, twitter.com. Registers `Alt+V` / `Option+V` command, content script at `run_at: document_start`, and popup.
+- **`manifest.json`** — Manifest V3. Permissions: `storage`. Host permissions: x.com, twitter.com. Registers `Alt+V` / `Option+V` command, content script at `run_at: document_start`, and popup.
 - **`background.js`** — Service worker. Owns three things: (1) `onInstalled` defaults, (2) `toggle-blocking` keyboard shortcut handler, (3) toolbar icon updates via `chrome.storage.onChanged`. **Single source of truth for icon state** — popup.js never calls `setIcon`.
 - **`content.js`** — All DOM interaction. Targets `[data-testid="videoComponent"]` containers (not just `<video>`) via CSS and MutationObserver — this hides the full container including X's thumbnail images, preventing any flash. `.zen-placeholder { visibility: visible !important }` punches through the hidden parent. Patches `history.pushState` and listens to `popstate` for SPA navigation.
 - **`popup.html` + `popup.js`** — Toggle + scope selector. Writes to `chrome.storage.sync`, sends `{ type: 'stateChanged' }` to active tab, renders UI. Does not call `setIcon`.

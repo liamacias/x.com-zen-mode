@@ -3,7 +3,7 @@
   "name": "x.com Zen Mode",
   "version": "1.0.0",
   "description": "Hide videos on X for intentional browsing.",
-  "permissions": ["storage", "tabs"],
+  "permissions": ["storage"],
   "host_permissions": ["*://*.x.com/*", "*://*.twitter.com/*"],
   "background": {
     "service_worker": "background.js"
